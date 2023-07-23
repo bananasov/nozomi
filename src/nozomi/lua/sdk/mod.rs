@@ -10,7 +10,10 @@ pub fn setup_sdk_table(lua: &Lua) -> mlua::Result<LuaTable> {
     memory_table.set(
         "get_base_address",
         lua.create_function(|_, _args: LuaMultiValue| {
-            Ok(0x400000) // YES I KNOW FUCK YOU
+            let rw_lock = crate::PROCESS.read().unwrap();
+            let module = rw_lock.as_ref().unwrap();
+
+            Ok(module.base_address)
         })?,
     )?;
 

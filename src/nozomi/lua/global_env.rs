@@ -9,7 +9,7 @@ pub fn setup_global_env(lua: &Lua) -> mlua::Result<()> {
     globals.set("print", lua.create_function(print)?)?;
 
     let sdk_table = sdk::setup_sdk_table(&lua)?;
-    globals.set("sdk", sdk_table)?;
+    globals.set("nozomi", sdk_table)?;
 
     Ok(())
 }
