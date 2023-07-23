@@ -1,0 +1,19 @@
+[package]
+name = "nozomi"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+fern = "0.6.2"
+humantime = "2.1.0"
+interprocess = "1.2.1"
+log = "0.4.19"
+mlua = { version = "0.8.9", features = ["luau", "vendored"] }
+poggers = { path = "D:\\poggers" }
+poggers-derive = { path = "D:\\poggers\\poggers-derive" }
+# Logging
