@@ -1,12 +1,11 @@
 use std::time::SystemTime;
 
-use interprocess::os::windows::named_pipe::ByteReaderPipeStream;
 use log::{error, info};
 
 mod nozomi;
-use nozomi::lua::NozomiLua;
+mod pipes;
 
-// static LOCAL_PLAYER_ADDRESS: usize = 0x17E0A8;
+use nozomi::lua::NozomiLua;
 
 static LUA_STR: &str = include_str!("../test.lua");
 

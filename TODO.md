@@ -1,0 +1,2 @@
+- [ ] Hooking functions from lua
+- [ ] Drawing funtions

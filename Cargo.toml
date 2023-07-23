@@ -14,6 +14,6 @@ humantime = "2.1.0"
 interprocess = "1.2.1"
 log = "0.4.19"
 mlua = { version = "0.8.9", features = ["luau", "vendored"] }
-poggers = { git = "https://github.com/pozm/poggers.git", branch = "windows-048"}
-poggers-derive = "0.1.4"
+poggers = { git = "https://github.com/pozm/poggers.git", branch = "windows-048" }
+poggers-derive = { git = "https://github.com/pozm/poggers.git", branch = "windows-048" }
 # Logging
