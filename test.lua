@@ -3,8 +3,10 @@
 -- local health_offset = 0xEC;
 
 local localplayer = nozomi.get_local_player()
+
 print(localplayer.base)
 print(localplayer.health)
+print(localplayer.position.x, localplayer.position.y, localplayer.position.z)
 -- local player = nozomi.memory.read_usize(base_address + local_player_address)
 -- local health = nozomi.memory.read_u8(player + health_offset)
 -- print(health)
