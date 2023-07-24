@@ -51,6 +51,5 @@ fn entry() -> Result<(), Box<dyn std::error::Error>> {
     // TODO: Actually make namedpipes work :guh:
     // let cunt = ByteReaderPipeStream::connect("Nozomi")?;
 
-
     Ok(())
 }

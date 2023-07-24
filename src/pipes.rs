@@ -2,7 +2,7 @@ use interprocess::os::windows::named_pipe::ByteReaderPipeStream;
 
 #[allow(unused)]
 pub struct NozomiPipes {
-    pipe: ByteReaderPipeStream
+    pipe: ByteReaderPipeStream,
 }
 
 impl NozomiPipes {

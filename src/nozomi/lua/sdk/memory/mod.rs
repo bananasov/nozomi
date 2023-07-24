@@ -19,13 +19,11 @@ macro_rules! make_unsafe_mem_write_block {
 }
 
 macro_rules! unpack_lua_value {
-    ($lua:expr, $args:expr, $index:expr, $type:ty) => {
-        {
-            let fucker = $args.get($index).unwrap();
-            let argument: $type = $lua.unpack(fucker.clone())?;
-            argument
-        }
-    };
+    ($lua:expr, $args:expr, $index:expr, $type:ty) => {{
+        let fucker = $args.get($index).unwrap();
+        let argument: $type = $lua.unpack(fucker.clone())?;
+        argument
+    }};
 }
 
 pub fn read_u8(_: &Lua, address: usize) -> mlua::Result<u8> {
