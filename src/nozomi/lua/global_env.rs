@@ -1,6 +1,8 @@
 use log::info;
 use mlua::prelude::*;
 
+use crate::nozomi::structs::vector::Vector3;
+
 use super::sdk;
 use super::util::pretty_format_multi_value;
 
@@ -10,6 +12,9 @@ pub fn setup_global_env(lua: &Lua) -> mlua::Result<()> {
 
     let sdk_table = sdk::setup_sdk_table(&lua)?;
     globals.set("nozomi", sdk_table)?;
+
+    let vector3_constructor = lua.create_function(|_, (x, y, z)| {Ok(Vector3::new(x, y, z))})?;
+    globals.set("Vector3", vector3_constructor)?;
 
     Ok(())
 }
