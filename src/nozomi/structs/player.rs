@@ -1,6 +1,10 @@
 use mlua::prelude::*;
 
 use super::vector::Vector3;
+use crate::nozomi::offsets::entity::{
+    ANGLE, ARMOR as PLAYER_ARMOR, BODY_POSITION, HEAD_POSITION, HEALTH as PLAYER_HEALTH,
+    LOCAL_PLAYER_ADDRESS,
+};
 
 #[derive(Debug)]
 pub struct Player {
@@ -9,7 +13,7 @@ pub struct Player {
 
 impl Player {
     pub fn get_local_player() -> Player {
-        let player1_ptr = 0x400000 + 0x18AC00;
+        let player1_ptr = 0x400000 + LOCAL_PLAYER_ADDRESS;
         let base = unsafe {
             let pointer = player1_ptr as *mut usize;
             *pointer
@@ -21,7 +25,7 @@ impl Player {
     // TODO: Add function for getting all players
 
     pub fn get_health(&self) -> i32 {
-        let address = self.base + 0xEC;
+        let address = self.base + PLAYER_HEALTH;
         let health = unsafe {
             let pointer = address as *mut i32;
             *pointer
@@ -31,7 +35,7 @@ impl Player {
     }
 
     pub fn get_armor(&self) -> i32 {
-        let address = self.base + 0xF0;
+        let address = self.base + PLAYER_ARMOR;
         let armor = unsafe {
             let pointer = address as *mut i32;
             *pointer
@@ -42,7 +46,7 @@ impl Player {
 
     // TODO: Implement getting the 12 byte value named position and cast it into a struct lmao
     pub fn get_head_position(&self) -> Vector3 {
-        let address = self.base + 0x4;
+        let address = self.base + HEAD_POSITION;
         let pos = unsafe {
             let pointer = address as *mut Vector3;
             *pointer
@@ -52,7 +56,7 @@ impl Player {
     }
 
     pub fn get_body_position(&self) -> Vector3 {
-        let address = self.base + 0x28;
+        let address = self.base + BODY_POSITION;
         let pos = unsafe {
             let pointer = address as *mut Vector3;
             *pointer
@@ -62,7 +66,7 @@ impl Player {
     }
 
     pub fn get_angle(&self) -> Vector3 {
-        let address = self.base + 0x34;
+        let address = self.base + ANGLE;
         let pos = unsafe {
             let pointer = address as *mut Vector3;
             *pointer
