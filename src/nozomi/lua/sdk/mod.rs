@@ -1,5 +1,7 @@
 use mlua::prelude::*;
 
+use crate::nozomi::structs::localplayer;
+
 mod memory;
 
 pub fn setup_sdk_table(lua: &Lua) -> mlua::Result<LuaTable> {
@@ -27,7 +29,13 @@ pub fn setup_sdk_table(lua: &Lua) -> mlua::Result<LuaTable> {
     memory_table.set("write_usize", lua.create_function(memory::write_usize)?)?;
 
     // Player stuff
-    sdk_table.set("get_local_player", "TODO")?;
+    sdk_table.set("get_local_player", lua.create_function(|_lua: &Lua, _args: LuaMultiValue| {
+        let localplayer = (0x18AC00 + 0x400000) as *mut localplayer::LocalPlayer;
+        let rust_ref: &mut localplayer::LocalPlayer = unsafe{ localplayer.as_mut().unwrap() };
+        println!("{:#?}", rust_ref);
+
+        Ok(())
+    })?)?;
     sdk_table.set("get_players", "TODO")?;
 
     // Memory editing from Lua
