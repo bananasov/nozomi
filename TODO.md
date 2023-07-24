@@ -2,5 +2,6 @@
 - [ ] Hooking functions from lua
 - [ ] Drawing funtions
 
-## Internal
-- [ ] Somehow have a state by passing around references.
+## Possibilities
+- [ ] Window API for creating ImGui or egui windows on top of assaultcube or whatever
+- [ ] Internal UI

@@ -41,8 +41,28 @@ impl Player {
     }
 
     // TODO: Implement getting the 12 byte value named position and cast it into a struct lmao
-    pub fn get_position(&self) -> Vector3 {
+    pub fn get_head_position(&self) -> Vector3 {
         let address = self.base + 0x4;
+        let pos = unsafe {
+            let pointer = address as *mut Vector3;
+            *pointer
+        };
+
+        pos
+    }
+
+    pub fn get_body_position(&self) -> Vector3 {
+        let address = self.base + 0x28;
+        let pos = unsafe {
+            let pointer = address as *mut Vector3;
+            *pointer
+        };
+
+        pos
+    }
+
+    pub fn get_angle(&self) -> Vector3 {
+        let address = self.base + 0x34;
         let pos = unsafe {
             let pointer = address as *mut Vector3;
             *pointer
@@ -58,7 +78,9 @@ impl LuaUserData for Player {
 
         fields.add_field_method_get("health", |_, this| Ok(this.get_health()));
         fields.add_field_method_get("armor", |_, this| Ok(this.get_armor()));
-        fields.add_field_method_get("position", |_, this| Ok(this.get_position()));
+        fields.add_field_method_get("position", |_, this| Ok(this.get_head_position()));
+        fields.add_field_method_get("body_position", |_, this| Ok(this.get_body_position()));
+        fields.add_field_method_get("angle", |_, this| Ok(this.get_angle()));
     }
 
     fn add_methods<'lua, M: mlua::UserDataMethods<'lua, Self>>(_methods: &mut M) {}
