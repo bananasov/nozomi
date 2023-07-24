@@ -13,7 +13,7 @@ pub fn setup_global_env(lua: &Lua) -> mlua::Result<()> {
     let sdk_table = sdk::setup_sdk_table(&lua)?;
     globals.set("nozomi", sdk_table)?;
 
-    let vector3_constructor = lua.create_function(|_, (x, y, z)| {Ok(Vector3::new(x, y, z))})?;
+    let vector3_constructor = lua.create_function(|_, (x, y, z)| Ok(Vector3::new(x, y, z)))?;
     globals.set("Vector3", vector3_constructor)?;
 
     Ok(())

@@ -1,4 +1,4 @@
-use mlua::{UserData, MetaMethod, FromLua, Value, Lua};
+use mlua::{MetaMethod, UserData};
 
 #[derive(Copy, Clone, Debug)]
 #[repr(C)]
@@ -114,7 +114,11 @@ impl UserData for Vector3 {
         });
 
         methods.add_meta_function(MetaMethod::Call, |_, ()| {
-            Ok(Vector3{x: 0.0, y: 0.0, z: 0.0})
+            Ok(Vector3 {
+                x: 0.0,
+                y: 0.0,
+                z: 0.0,
+            })
         });
     }
 }
