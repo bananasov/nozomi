@@ -13,6 +13,7 @@ fern = "0.6.2"
 humantime = "2.1.0"
 interprocess = "1.2.1"
 log = "0.4.19"
+lazy_static = "1.4.0"
 mlua = { version = "0.8.9", features = ["luau", "vendored"] }
 poggers = { git = "https://github.com/pozm/poggers.git", branch = "windows-048" }
 poggers-derive = { git = "https://github.com/pozm/poggers.git", branch = "windows-048" }

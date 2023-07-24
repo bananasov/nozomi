@@ -1,4 +1,6 @@
-use std::time::SystemTime;
+use std::{time::SystemTime, sync::{RwLock, Arc}};
+
+use lazy_static::lazy_static;
 
 use log::{error, info};
 
@@ -6,6 +8,11 @@ mod nozomi;
 mod pipes;
 
 use nozomi::lua::NozomiLua;
+use poggers::internal::windows::module::InModule;
+
+lazy_static! {
+    pub static ref MODULE: Arc<RwLock<Option<InModule>>> = Default::default();
+}
 
 static LUA_STR: &str = include_str!("../test.lua");
 
@@ -32,6 +39,9 @@ fn entry() -> Result<(), Box<dyn std::error::Error>> {
     unsafe {
         poggers::exports::AllocConsole();
     }
+
+    let mut proc = MODULE.write()?;
+    *proc = Some(InModule::new("ac_client.exe")?);
 
     setup_logging();
 
