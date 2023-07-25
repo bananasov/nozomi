@@ -33,12 +33,9 @@ fn setup_logging() {
         .unwrap();
 }
 
-#[poggers_derive::create_entry(no_console)]
+#[poggers_derive::create_entry(no_free)]
 fn entry() -> Result<(), Box<dyn std::error::Error>> {
-    // We manually allocate a console because poggers is stupid.
-    unsafe {
-        poggers::exports::AllocConsole();
-    }
+    // We DONT manually allocate a console because poggers is NOT stupid.
 
     let mut proc = MODULE.write()?;
     *proc = Some(InModule::new("ac_client.exe")?);
