@@ -1,6 +1,6 @@
 use mlua::prelude::*;
 
-use crate::{nozomi::structs::player::Player, MODULE};
+use crate::nozomi::structs::player::Player;
 
 mod memory;
 
@@ -11,12 +11,7 @@ pub fn setup_sdk_table(lua: &Lua) -> mlua::Result<LuaTable> {
 
     memory_table.set(
         "get_base_address",
-        lua.create_function(|_, ()| {
-            let proc = MODULE.read().unwrap();
-            let base_address = proc.as_ref().unwrap().base_address;
-
-            Ok(base_address)
-        })?,
+        lua.create_function(|_, ()| Ok(0x400000))?,
     )?;
 
     memory_table.set("read_u8", lua.create_function(memory::read_u8)?)?;

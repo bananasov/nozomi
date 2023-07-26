@@ -11,11 +11,10 @@ mod nozomi;
 mod pipes;
 
 use nozomi::lua::NozomiLua;
-use poggers::internal::windows::module::InModule;
-
-lazy_static! {
-    pub static ref MODULE: Arc<RwLock<Option<InModule>>> = Default::default();
-}
+use poggers::structures::{
+    modules::Module,
+    process::{implement::utils::ProcessUtils, Internal, Process},
+};
 
 static LUA_STR: &str = include_str!("../test.lua");
 
@@ -38,9 +37,6 @@ fn setup_logging() {
 
 #[poggers_derive::create_entry(no_free)]
 fn entry() -> Result<(), Box<dyn std::error::Error>> {
-    let mut proc = MODULE.write()?;
-    *proc = Some(InModule::new("ac_client.exe")?);
-
     setup_logging();
 
     info!("DLL Injected");

@@ -1,12 +1,9 @@
 use mlua::prelude::*;
 
 use super::vector::Vector3;
-use crate::{
-    nozomi::offsets::entity::{
-        ANGLE, ARMOR as PLAYER_ARMOR, BODY_POSITION, HEAD_POSITION, HEALTH as PLAYER_HEALTH,
-        LOCAL_PLAYER_ADDRESS,
-    },
-    MODULE,
+use crate::nozomi::offsets::entity::{
+    ANGLE, ARMOR as PLAYER_ARMOR, BODY_POSITION, HEAD_POSITION, HEALTH as PLAYER_HEALTH,
+    LOCAL_PLAYER_ADDRESS,
 };
 
 #[derive(Debug)]
