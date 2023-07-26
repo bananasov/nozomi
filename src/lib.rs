@@ -1,4 +1,7 @@
-use std::{time::SystemTime, sync::{RwLock, Arc}};
+use std::{
+    sync::{Arc, RwLock},
+    time::SystemTime,
+};
 
 use lazy_static::lazy_static;
 
@@ -35,8 +38,6 @@ fn setup_logging() {
 
 #[poggers_derive::create_entry(no_free)]
 fn entry() -> Result<(), Box<dyn std::error::Error>> {
-    // We DONT manually allocate a console because poggers is NOT stupid.
-
     let mut proc = MODULE.write()?;
     *proc = Some(InModule::new("ac_client.exe")?);
 
