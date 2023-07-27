@@ -11,10 +11,10 @@ impl NozomiPipes {
         Ok(NozomiPipes { pipe })
     }
 
-    pub fn read_data(&mut self, buffer: &mut [u8]) -> Result<usize, std::io::Error> {
+    pub fn read_data(&mut self, buffer: &mut String) -> Result<usize, std::io::Error> {
         let mut wa = self.pipe.accept()?;
 
-        wa.read(buffer)
+        wa.read_to_string(buffer)
     }
 
     // If needed add a method for writing data to the named pipe.

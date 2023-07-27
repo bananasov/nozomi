@@ -47,8 +47,9 @@ fn entry() -> Result<(), Box<dyn std::error::Error>> {
     let mut pipes = pipes::NozomiPipes::new("Nozomi")?;
 
     loop {
-        let mut buffer = [0; 1024];
+        let mut buffer = String::new();
         pipes.read_data(&mut buffer)?;
+
         println!("buffer: {:?}", buffer);
     }
     // Ok(())
