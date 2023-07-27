@@ -1,18 +1,20 @@
-use interprocess::os::windows::named_pipe::ByteReaderPipeStream;
+use interprocess::local_socket::LocalSocketListener;
 use std::{error::Error, io::Read};
 
 pub struct NozomiPipes {
-    pipe: ByteReaderPipeStream,
+    pipe: LocalSocketListener,
 }
 
 impl NozomiPipes {
     pub fn new(pipe_name: &str) -> Result<Self, Box<dyn Error>> {
-        let pipe = ByteReaderPipeStream::connect(pipe_name)?;
+        let pipe = LocalSocketListener::bind(pipe_name)?;
         Ok(NozomiPipes { pipe })
     }
 
     pub fn read_data(&mut self, buffer: &mut [u8]) -> Result<usize, std::io::Error> {
-        self.pipe.read(buffer)
+        let mut wa = self.pipe.accept()?;
+
+        wa.read(buffer)
     }
 
     // If needed add a method for writing data to the named pipe.

@@ -44,6 +44,12 @@ fn entry() -> Result<(), Box<dyn std::error::Error>> {
 
     // TODO: Actually make namedpipes work :guh:
     // let cunt = ByteReaderPipeStream::connect("Nozomi")?;
+    let mut pipes = pipes::NozomiPipes::new("Nozomi")?;
 
-    Ok(())
+    loop {
+        let mut buffer = [0; 1024];
+        pipes.read_data(&mut buffer)?;
+        println!("buffer: {:?}", buffer);
+    }
+    // Ok(())
 }
