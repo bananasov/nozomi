@@ -1,5 +1,5 @@
 use interprocess::os::windows::named_pipe::ByteReaderPipeStream;
-use std::error::Error;
+use std::{error::Error, io::Read};
 
 pub struct NozomiPipes {
     pipe: ByteReaderPipeStream,
@@ -11,7 +11,7 @@ impl NozomiPipes {
         Ok(NozomiPipes { pipe })
     }
 
-    pub fn read_data(&mut self, buffer: &mut [u8]) -> Result<usize, Box<dyn Error>> {
+    pub fn read_data(&mut self, buffer: &mut [u8]) -> Result<usize, std::io::Error> {
         self.pipe.read(buffer)
     }
 
