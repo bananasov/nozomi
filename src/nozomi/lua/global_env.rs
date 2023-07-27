@@ -20,7 +20,7 @@ pub fn setup_global_env(lua: &Lua) -> mlua::Result<()> {
 }
 
 fn print(_: &Lua, args: LuaMultiValue) -> mlua::Result<()> {
-    let formatted = format!("{}", pretty_format_multi_value(&args)?);
+    let formatted = pretty_format_multi_value(&args)?;
     info!("{}", formatted);
 
     Ok(())

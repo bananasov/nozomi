@@ -117,7 +117,7 @@ pub fn write_f32(lua: &Lua, args: LuaMultiValue) -> mlua::Result<f32> {
     let address = unpack_lua_value!(lua, args, 0, usize);
     let value = unpack_lua_value!(lua, args, 1, f32);
 
-    let _ = make_unsafe_mem_write_block!(address, f32, value);
+    make_unsafe_mem_write_block!(address, f32, value);
 
     Ok(value)
 }
@@ -126,7 +126,7 @@ pub fn write_f64(lua: &Lua, args: LuaMultiValue) -> mlua::Result<f64> {
     let address = unpack_lua_value!(lua, args, 0, usize);
     let value = unpack_lua_value!(lua, args, 1, f64);
 
-    let _ = make_unsafe_mem_write_block!(address, f64, value);
+    make_unsafe_mem_write_block!(address, f64, value);
 
     Ok(value)
 }
